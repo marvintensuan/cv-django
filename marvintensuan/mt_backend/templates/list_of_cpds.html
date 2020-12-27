@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="jumbotron" style="background-color: #d3d3d3;">
+        <div class="container">
+            <h1>Continuing Professional Development</h1>
+        <p>The mark of a true professional is in their struggle to get CPD units.</p>
+        </div>
+    </section>
+
+    <section class="page-header" style="margin: auto auto auto 1%;">
+        <h1>For Years 2018 to 2020</h1>
+    </section>
+
+    <section class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Thematic</th>
+                    <th>Units</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for cpd in cpd_list %}
+                <tr>
+                    <td>{{ cpd.name }}</td>
+                    <td>{{ cpd.thematic }}</td>
+                    <td>{{ cpd.units }}</td>
+                    <td>{{ cpd.cpd_date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </section>
+
+{% endblock %}
