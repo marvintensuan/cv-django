@@ -13,4 +13,4 @@ admin.site.register(SDL_OnlineCourse, SDL_OnlineCourseAdmin)
 
 @admin.register(SDL_Webinars)
 class SDL_WebinarsAdmin(admin.ModelAdmin):
-    pass
+    return {}

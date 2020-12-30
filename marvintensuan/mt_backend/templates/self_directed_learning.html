@@ -24,108 +24,17 @@
                 </tr>
             </thead>
             <tbody>
+                {% for webinar in webinar_list %}
                 <tr>
-                    <td style="width: 450px;">LinkedIn Metadgo ata Day 2020</td>
-                    <td>LinkedIn</td>
-                    <td>2020-12-15</td>
-                    <td style="width: 300px">
-                        Zoom webinar bringing together data engineers from large tech companies like Google, 
-                        LinkedIn, AirBnb, and Paypal to discuss latest developments in the field of data governance;
-                        specifically with regards to management of metadata.
-                        <a href="https://metadataday2020.splashthat.com/">Event page.</a>
-                    </td>
+                    <td width="450px">{{ webinar.webinar_name }}</td>
+                    <td>{{ webinar.organizer }}</td>
+                    <td>{{ webinar.webinar_date }}</td>
+                    {% autoescape off%}
+                    <td>{{ webinar.html_desc }}</td>
+                    {% endautoescape %}
                 </tr>
-                <tr>
-                    <td>Drawing Distinctions: An Introduction to Financing Companies, Lending Companies, Foundations and Microfinance NGOs</td>
-                    <td>Securities and Exchange Commission</td>
-                    <td>2020-10-28</td>
-                    <td>
-                        <a href="https://drive.google.com/file/d/1d_fOAd87YpHKUJD6NOsqO2MYuEM9MewI/view">Link to certificate.</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>BASIQS: Business Model Canvas for Beginners</td>
-                    <td>QBO Philippines</td>
-                    <td>2020-10-22</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Wildcard QLITAN: Journey of INQBATION Graduates</td>
-                    <td>QBO Philippines</td>
-                    <td>2020-09-29</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>WORQSHOP: Data Analytics with MoEngage</td>
-                    <td>QBO Philippines</td>
-                    <td>2020-09-09</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Distinguished Speaker Series Webinar: Understanding Public Finance and Taxation in a Fiat Currency System</td>
-                    <td>Asian Development Bank</td>
-                    <td>2020-09-01</td>
-                    <td>
-                        A one-hour webinar featuring Khalid Saeed of Worcester Polytechnic Institute 
-                        who discussed the relevance of modern money theory for contemporary public finance.
-                        <a href="https://drive.google.com/file/d/18BJfZaTfk9r5LJA1KlLYHDHTsLfLyW73/view">Event page</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Claim it right: Tax deductions explained</td>
-                    <td>PWC Isla Lipana & Co.</td>
-                    <td>2020-08-28</td>
-                    <td>
-                        A two-hour session discussing tax-deductible items along with codal references and court rulings.
-                    </td>
-                </tr>
-                <tr>
-                    <td>WORQSHOP: Growth Hacking Your Way to Success</td>
-                    <td>QBO Philippines</td>
-                    <td>2020-08-14</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>SEC: Mandate and Functions and The Revised Corporation Code: Salient Provisions</td>
-                    <td>Securities and Exchange Commission</td>
-                    <td>2020-08-12</td>
-                    <td>
-                        <a href="https://drive.google.com/file/d/18BJfZaTfk9r5LJA1KlLYHDHTsLfLyW73/view">Link to certificate.</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sealed and Secured: The Low Down on Data Privacy and Cybersecurity</td>
-                    <td>UnionBank of the Philippines</td>
-                    <td>2020-08-06</td>
-                    <td><a href="https://apptitude.xyz/dashboard/student/certificate/0x3e770C29E05038087B2B40f219E09b687d7972fA/">Link to certificate.</a></td>
-                </tr>
-                <tr>
-                    <td>Taking The Robot Out of Human</td>
-                    <td>KPMG R.G Manabat &amp; Co.</td>
-                    <td>2020-07-14</td>
-                    <td>
-                        An overview on Robotic Process Automation (RPA): what it is, how industries use it to achieve strategic goals, 
-                        and how KPMG can help in operationalizing RPA. (1 hr)
-                        <a href="https://drive.google.com/file/d/1TNbSUTb30sNbBijtokUKsKKNMAuXurKO/view">Link to certificate.</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data Science and AI Ethics</td>
-                    <td>UnionBank of the Philippines</td>
-                    <td>2020-07-13</td>
-                    <td>
-                        <a href="https://apptitude.xyz/dashboard/student/certificate/0xb27b8ffa9b8B00975DE2Cd5F8Ef7D91Ac3cd17F6/">Link to certificate.</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>BIR Goes Digital: How to File and Pay Your Taxes Online for Corporate/Non-Individual Taxpayers</td>
-                    <td>Bureau of Internal Revenue</td>
-                    <td>2020-06-08</td>
-                    <td>
-                        <a href="https://drive.google.com/file/d/1PeanQY3qIND6mY32bfp9Lhd5W6G_JBpf/view">Link to certificate.</a>
-                    </td>
-                </tr>
-                </tbody>
+                {% endfor %}
+            </tbody>
         </table>
 
     </section>
@@ -145,52 +54,18 @@
                 </tr>
             </thead>
             <tbody>
+                {% for oc in onlinecourse_list %}
                 <tr>
-                    <td>Machine Learning</td>
-                    <td>Andrew Ng</td>
-                    <td>2020-09-01</td>
-                    <td>
-                        <a href="https://www.coursera.org/account/accomplishments/certificate/D98R6TFBN3JP">Link to certificate</a>
-                    </td>
+                    <td>{{ oc.course_name }}</td>
+                    <td>{{ oc.facilitator }}</td>
+                    <td>{{ oc.onlinecourse_date_completed }}</td>
+                    {% if oc.link_to_certificate == None %}
+                    <td>TBA</td>
+                    {% else%}
+                    <td><a href="{{ oc.link_to_certificate }}">Link to certificate.</a> </td>
+                    {% endif %}
                 </tr>
-                <tr>
-                    <td>Project SPARTA: Data Visualization Fundamentals</td>
-                    <td>Department of Science and Technology</td>
-                    <td>2020-07-23</td>
-                    <td>
-                        <a href="https://coursebank.ph/certificates/479392b2cd21442a8f79de78bbfc6090">Link to certificate</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Project SPARTA: Dashboard and Drilldown Analytics</td>
-                    <td>Department of Science and Technology</td>
-                    <td>2020-06-14</td>
-                    <td>
-                        <a href="https://coursebank.ph/certificates/099dfbb5ae434ca1af7688c22647ddf3">Link to certificate</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Project SPARTA: Essential Excel Skills for Data Preparation and Analysis</td>
-                    <td>Department of Science and Technology</td>
-                    <td>2020-04-15</td>
-                    <td>
-                        <a href="https://coursebank.ph/certificates/3d3c3b1f129e484e8cebc670ebc32371">Link to certificate</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Project SPARTA: Getting Grounded on Analytics</td>
-                    <td>Department of Science and Technology</td>
-                    <td>2020-04-03</td>
-                    <td>
-                        <a href="https://coursebank.ph/certificates/2dafee277c8c45b29932422f77db1213">Link to certificate</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Project SPARTA: Data Management Fundamentals</td>
-                    <td>Department of Science and Technology</td>
-                    <td>Ongoing</td>
-                    <td>&nbsp;</td>
-                </tr>
+                {% endfor %}                
             </tbody>
         </table>
     </section>
