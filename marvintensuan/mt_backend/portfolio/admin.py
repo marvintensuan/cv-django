@@ -5,7 +5,7 @@ from .models import CPD, SDL_OnlineCourse, SDL_Webinars
 
 @admin.register(CPD)
 class CPDAdmin(admin.ModelAdmin):
-  list_display = ['name', 'thematic', 'units', 'cpd_date']
+  pass
 
 class SDL_OnlineCourseAdmin(admin.ModelAdmin):
     pass

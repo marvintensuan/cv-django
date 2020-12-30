@@ -31,9 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'CPD',
-    'SDL_Webinars',
-    'SDL_OnlineCourse',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

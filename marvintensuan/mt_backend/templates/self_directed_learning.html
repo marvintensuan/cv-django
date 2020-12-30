@@ -30,7 +30,7 @@
                     <td>{{ webinar.organizer }}</td>
                     <td>{{ webinar.webinar_date }}</td>
                     {% autoescape off%}
-                    <td>{{ webinar.html_desc }}</td>
+                    <td max-width="40%">{{ webinar.html_desc }}</td>
                     {% endautoescape %}
                 </tr>
                 {% endfor %}
