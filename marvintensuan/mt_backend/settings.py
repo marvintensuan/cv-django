@@ -44,14 +44,7 @@ DEBUG = env("DEBUG")
 # Setting this value from django-environ
 DATABASES = {"default": env.db()}
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+
 INSTALLED_APPS += ["storages"] # for django-storages
 if "mt_backend" not in INSTALLED_APPS:
    INSTALLED_APPS += ["mt_backend"] # for custom data migration

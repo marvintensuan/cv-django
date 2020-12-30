@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4dq#)rs-df(=7%y8gov4lve$km-z(!vb!9)%^(czq5ce^=0h1f'
+#SECRET_KEY = '4dq#)rs-df(=7%y8gov4lve$km-z(!vb!9)%^(czq5ce^=0h1f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'CPD',
+    'SDL_Webinars',
+    'SDL_OnlineCourse',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
