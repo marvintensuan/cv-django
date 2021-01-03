@@ -21,3 +21,6 @@ def self_directed_learning(request, *args, **kwargs):
     context = { 'webinar_list' : webinar_list,
                 'onlinecourse_list': onlinecourse_list}
     return render(request, 'self_directed_learning.html', context)
+
+def my_learning_roadmap(request, *args, **kwargs):
+    return render(request, 'my-learning-roadmap.html')

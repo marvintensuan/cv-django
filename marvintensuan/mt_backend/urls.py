@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .portfolio.views import home
-from .portfolio.views import list_of_cpds
-from .portfolio.views import self_directed_learning
+from .portfolio.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
     path('list_of_cpds', list_of_cpds),
     path('self_directed_learning', self_directed_learning),
+    path('my_learning_roadmap', my_learning_roadmap)
 ]
