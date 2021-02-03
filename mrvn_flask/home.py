@@ -2,16 +2,12 @@ import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-
 from google.cloud import firestore
-
 bp = Blueprint('home', __name__)
 
 @bp.route('/', methods=['GET'])
 def home():
-
     context = my_reddit_comments()
-
     return render_template('sample.html', context=context)
 
 def my_reddit_comments():

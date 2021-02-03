@@ -1,4 +1,5 @@
 import os
+import environ
 from flask import Flask
 
 try:
@@ -12,11 +13,12 @@ env_file = os.path.join(BASE_DIR,  ".env")
 
 SETTINGS_NAME = "application_settings"
 
-if not os.path.isfile('.env'):
-    import google.auth
-    from google.cloud import secretmanager_v1beta1 as sm
+def create_app(test_config=None):
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
 
-    _, project = google.auth.default()
+    if not os.path.isfile('.env'):
+        _, project = google.auth.default()
 
     if project:
         client = sm.SecretManagerServiceClient()
@@ -26,18 +28,11 @@ if not os.path.isfile('.env'):
         with open(env_file, "w") as f:
             f.write(payload)
 
-env = environ.Env()
-env.read_env(env_file)
-
-# Setting this value from django-environ
-SECRET_KEY = env("SECRET_KEY")
-
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
+        env = environ.Env()
+        env.read_env(env_file)
         SECRET_KEY= env('SECRET_KEY'),
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
     if test_config is None:
         # load the instance config, if it exists, when not testing
