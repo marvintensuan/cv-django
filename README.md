@@ -42,3 +42,6 @@ Some key tasks for after finishing the codelab:
 ](https://github.com/marvintensuan/marvintensuan.github.io/commit/d24bd90d5cc493a91b2c30a30ca2a898175342ba).
 
 2021-01-03 &mdash; converted to Bootsrap 4.
+
+2021-02-03 &mdash; started Flask app. [See commit 9264491
+](https://github.com/marvintensuan/cv-django/commit/9264491c73cb7be338337bc162bd46c7ab24aa3e#diff-255d345f1b134dc6c02f4113e913d16662d5b5a6fca7c3c8c58f0156954fcaaa)
