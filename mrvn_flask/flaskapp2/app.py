@@ -4,14 +4,9 @@ Author: @timtech4u
 https://cloud.google.com/community/tutorials/building-flask-api-with-cloud-firestore-and-deploying-to-cloud-run
 '''
 
-# Required imports
 import os
-from flask import Flask, request, render_template
-#from firebase_admin import credentials, firestore, initialize_app
+from flask import Flask, render_template
 from dotenv import load_dotenv
-
-# Initialize Flask app
-app = Flask(__name__)
 
 try:
     from google.cloud import firestore
@@ -41,10 +36,7 @@ try:
 except ImportError:
     print("Import Error raised.")
 
-@app.route('/sample', methods=['GET'])
-def sample():
-    context = my_reddit_comments()
-    return render_template('sample.html', context=context)
+app = Flask(__name__)
 
 @app.route('/')
 def home():
@@ -52,7 +44,6 @@ def home():
 
 @app.route('/list_of_cpds')
 def learning_cpd():
-    
     return render_template('list_of_cpds.html')
 
 @app.route('/self_directed_learning')
