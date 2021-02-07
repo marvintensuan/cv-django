@@ -13,12 +13,6 @@ from dotenv import load_dotenv
 # Initialize Flask app
 app = Flask(__name__)
 
-# Initialize Firestore DB
-#cred = credentials.Certificate('key.json')
-#default_app = initialize_app(cred)
-#db = firestore.client()
-#todo_ref = db.collection('todos')
-
 try:
     from google.cloud import firestore
 except:
@@ -46,12 +40,6 @@ try:
     load_dotenv()
 except ImportError:
     print("Import Error raised.")
-
-def my_reddit_comments():
-    db = firestore.Client()
-    coll = db.collection('tagapagtuos_submissions').stream()
-    db = None
-    return [doc.to_dict() for doc in coll]
 
 @app.route('/sample', methods=['GET'])
 def sample():
