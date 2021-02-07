@@ -6,12 +6,13 @@ try:
     import google.auth
     from google.cloud import secretmanager_v1beta1 as sm
 except ImportError:
+    print("Import Error raised.")
     pass
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env_file = os.path.join(BASE_DIR,  ".env")
 
-SETTINGS_NAME = "application_settings"
+SETTINGS_NAME = "flask_app_settings"
 
 def create_app(test_config=None):
     # create and configure the app
@@ -33,6 +34,7 @@ def create_app(test_config=None):
         env.read_env(env_file)
         SECRET_KEY= env('SECRET_KEY'),
         # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "env('GOOGLE_APPLICATION_CREDENTIALS')"
     )
     if test_config is None:
         # load the instance config, if it exists, when not testing
