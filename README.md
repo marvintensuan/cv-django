@@ -45,3 +45,5 @@ Some key tasks for after finishing the codelab:
 
 2021-02-03 &mdash; started Flask app. [See commit 9264491
 ](https://github.com/marvintensuan/cv-django/commit/9264491c73cb7be338337bc162bd46c7ab24aa3e#diff-255d345f1b134dc6c02f4113e913d16662d5b5a6fca7c3c8c58f0156954fcaaa)
+
+2021-02-07 &mdash; deployed Flask app. [URL](https://cv-flask-img-nwpr6gpcxa-de.a.run.app/) | [commit 6c5f336](https://github.com/marvintensuan/cv-django/commit/6c5f3366957cab83d058537ceb883aed981053a5)
