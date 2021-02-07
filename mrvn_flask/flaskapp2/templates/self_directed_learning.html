@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+    <script>
+		$(".nav-link").eq(1).addClass("active")
+	</script>
+
+    <section class="jumbotron" style="background-color: #d3d3d3;">
+        <div class="container">
+            <h1>Self-Directed Learning</h1>
+        <p>My passion for learning goes way beyond compliance.
+            Below are some opportunities I took to make myself a better professional.
+        </p>
+        </div>
+    </section>
+
+    <!--- WEBINARS -->
+    <div class="page-header" style="margin: auto auto auto 5%;">
+        <h1>Webinars</h1>
+    </div>
+
+    <section class="container" style="margin: auto 10% auto 5%;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th >Name</th>
+                    <th>Organizer</th>
+                    <th>Date</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for webinar in webinar_list %}
+                <tr>
+                    <td width="450px">{{ webinar.webinar_name }}</td>
+                    <td>{{ webinar.organizer }}</td>
+                    <td>{{ webinar.webinar_date }}</td>
+                    {% autoescape off%}
+                    <td max-width="40%">{{ webinar.html_desc }}</td>
+                    {% endautoescape %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </section>
+
+    <!--- ONLINE COURSES -->
+    <div class="page-header" style="margin: auto auto auto 5%;">
+        <h1>Online Courses</h1>
+    </div>
+    <section class="container" style="margin: auto 10% auto 5%;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Course Facilitator</th>
+                    <th>Date Completed</th>
+                    <th>Certificate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for oc in onlinecourse_list %}
+                <tr>
+                    <td>{{ oc.course_name }}</td>
+                    <td>{{ oc.facilitator }}</td>
+                    <td>{{ oc.onlinecourse_date_completed }}</td>
+                    {% if oc.link_to_certificate == None %}
+                    <td>TBA</td>
+                    {% else%}
+                    <td><a href="{{ oc.link_to_certificate }}">Link to certificate.</a> </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+    </section>
+
+{% endblock %}

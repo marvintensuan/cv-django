@@ -18,14 +18,40 @@ app = Flask(__name__)
 #default_app = initialize_app(cred)
 #db = firestore.client()
 #todo_ref = db.collection('todos')
-'''
+
 from google.cloud import firestore
 try:
     import google.auth
-    from google.cloud import secretmanager_v1beta1 as sm
+    from google.cloud import secretmanager as sm
+
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    env_file = os.path.join(BASE_DIR,  ".env")
+    SETTINGS_NAME = "flask_app_settings"
+
+    if not os.path.isfile('.env'):
+        _, project = google.auth.default()
+
+        if project:
+            client = sm.SecretManagerServiceClient()
+            path = client.secret_version_path(project, SETTINGS_NAME, "latest")
+            payload = client.access_secret_version(path).payload.data.decode("UTF-8")
+
+            with open(env_file, "w") as f:
+                f.write(payload)
+
 except ImportError:
     print("Import Error raised.")
     pass
+
+try:
+    import environ
+    env = environ.Env()
+    env.read_env(env_file)
+except ImportError:
+    print('Cannot import the environ module. :(')
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 def my_reddit_comments():
     db = firestore.Client()
@@ -37,10 +63,25 @@ def my_reddit_comments():
 def sample():
     context = my_reddit_comments()
     return render_template('sample.html', context=context)
-'''
+
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/list_of_cpds')
+def home():
+    context = {'cpd_list': {}}
+    return render_template('list_of_cpds.html', context=context)
+
+@app.route('/self_directed_learning')
+def home():
+    context = { 'webinar_list' : {},
+                'onlinecourse_list': {}}
+    return render_template('self_directed_learning.html', context=context)
+
+@app.route('/my_learning_roadmap')
+def home():
+    return render_template('my_learning_roadmap.html')
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
