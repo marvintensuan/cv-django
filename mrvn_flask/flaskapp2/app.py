@@ -64,14 +64,12 @@ def home():
 
 @app.route('/list_of_cpds')
 def learning_cpd():
-    context = {'cpd_list': {}}
-    return render_template('list_of_cpds.html', context=context)
+    
+    return render_template('list_of_cpds.html')
 
 @app.route('/self_directed_learning')
 def learning_sdl():
-    context = { 'webinar_list' : {},
-                'onlinecourse_list': {}}
-    return render_template('self_directed_learning.html', context=context)
+    return render_template('self_directed_learning.html')
 
 @app.route('/my_learning_roadmap')
 def learning_roadmap():
