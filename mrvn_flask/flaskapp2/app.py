@@ -8,7 +8,7 @@ https://cloud.google.com/community/tutorials/building-flask-api-with-cloud-fires
 import os
 from flask import Flask, request, render_template
 #from firebase_admin import credentials, firestore, initialize_app
-
+from dotenv import load_dotenv
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -19,7 +19,11 @@ app = Flask(__name__)
 #db = firestore.client()
 #todo_ref = db.collection('todos')
 
-from google.cloud import firestore
+try:
+    from google.cloud import firestore
+except:
+    print('Cannot import google.cloud.firestore')
+
 try:
     import google.auth
     from google.cloud import secretmanager as sm
@@ -38,20 +42,10 @@ try:
 
             with open(env_file, "w") as f:
                 f.write(payload)
-
+        
+    load_dotenv()
 except ImportError:
     print("Import Error raised.")
-    pass
-
-try:
-    import environ
-    env = environ.Env()
-    env.read_env(env_file)
-except ImportError:
-    print('Cannot import the environ module. :(')
-    from dotenv import load_dotenv
-    load_dotenv()
-
 
 def my_reddit_comments():
     db = firestore.Client()
@@ -69,18 +63,18 @@ def home():
     return render_template('home.html')
 
 @app.route('/list_of_cpds')
-def home():
+def learning_cpd():
     context = {'cpd_list': {}}
     return render_template('list_of_cpds.html', context=context)
 
 @app.route('/self_directed_learning')
-def home():
+def learning_sdl():
     context = { 'webinar_list' : {},
                 'onlinecourse_list': {}}
     return render_template('self_directed_learning.html', context=context)
 
 @app.route('/my_learning_roadmap')
-def home():
+def learning_roadmap():
     return render_template('my_learning_roadmap.html')
 
 port = int(os.environ.get('PORT', 8080))
